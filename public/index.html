@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glossa — Translate Anything, Instantly</title>
+  <meta name="description" content="A premium translation app for Indian and world languages. Translate instantly with copy and text-to-speech support.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="wordmark" href="/">Glossa</a>
+    <p class="provider" id="provider"></p>
+  </header>
+
+  <main>
+    <div class="workspace">
+      <section class="pane source" aria-label="Source text">
+        <div class="pane-head">
+          <select id="from" aria-label="Translate from"></select>
+        </div>
+        <div class="pane-body">
+          <textarea id="input" dir="auto" spellcheck="false" placeholder="Type or paste text" aria-label="Text to translate" maxlength="5000"></textarea>
+        </div>
+        <div class="pane-foot">
+          <button type="button" class="ghost" id="listen-in" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></svg>
+            <span class="label">Listen</span>
+          </button>
+          <button type="button" class="ghost" id="clear">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            <span class="label">Clear</span>
+          </button>
+          <span class="meta"><span id="detected"></span><span id="count" class="count">0 / 5000</span></span>
+          <button type="button" class="go" id="translate" aria-keyshortcuts="Control+Enter Meta+Enter" title="Ctrl+Enter or Cmd+Enter">Translate</button>
+        </div>
+      </section>
+
+      <button type="button" class="swap" id="swap" aria-label="Swap languages" title="Swap languages">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h14m0 0-3.5-3.5M18 8l-3.5 3.5M20 16H6m0 0 3.5-3.5M6 16l3.5 3.5"/></svg>
+      </button>
+
+      <section class="pane target" aria-label="Translation">
+        <div class="pane-head">
+          <select id="to" aria-label="Translate into"></select>
+        </div>
+        <div class="pane-body">
+          <div id="output" class="output" dir="auto" data-state="empty" aria-live="polite">Your translation will appear here.</div>
+        </div>
+        <div class="pane-foot">
+          <button type="button" class="ghost" id="listen-out" hidden disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></svg>
+            <span class="label">Listen</span>
+          </button>
+          <button type="button" class="ghost" id="copy" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5v-2a1.5 1.5 0 0 0-1.5-1.5H6.5A1.5 1.5 0 0 0 5 6.5V14a1.5 1.5 0 0 0 1.5 1.5h2"/></svg>
+            <span class="label">Copy</span>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <p class="error" id="error" role="alert" hidden></p>
+
+    <section class="history" aria-labelledby="history-title">
+      <div class="history-head">
+        <h2 id="history-title">Recent translations</h2>
+        <button type="button" class="ghost small" id="clear-history" hidden>Clear history</button>
+      </div>
+      <p class="history-empty" id="history-empty">Translations you make are kept here, on this device only.</p>
+      <ul class="history-list" id="history"></ul>
+    </section>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
